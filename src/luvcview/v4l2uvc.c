@@ -26,6 +26,7 @@
 #include <float.h>
 
 #include <libv4l2.h>
+#include <SDL.h>
 
 #include "luvcview/v4l2uvc.h"
 
@@ -36,7 +37,7 @@
 
 static int debug = 0;
 
-
+int     jpeg_decode (unsigned char **pic, unsigned char *buf, int *width, int *height);
 
 static int init_v4l2(struct vdIn *vd);
 

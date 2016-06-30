@@ -1244,9 +1244,9 @@ char temp[80];
   memset (temp, '\0', sizeof (temp));
   time (&curdate);
   tdate = localtime (&curdate);
-  snprintf (temp, 26, "P-%02d:%02d:%04d-%02d:%02d:%02d.%s\0",
+  snprintf (temp, 26, "P-%02d:%02d:%04d-%02d:%02d:%02d.%s%c",
 	    tdate->tm_mon + 1, tdate->tm_mday, tdate->tm_year + 1900,
-	    tdate->tm_hour, tdate->tm_min, tdate->tm_sec, myext[fmt]);
+	    tdate->tm_hour, tdate->tm_min, tdate->tm_sec, myext[fmt],'\0');
 
   memcpy (Picture, temp, strlen (temp));
 }

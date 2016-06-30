@@ -90,9 +90,9 @@ generate_dynamic_reconfigure_options(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  DEPENDS OpenCV
   LIBRARIES tuw_uvc tuw_uvc_ros
   CATKIN_DEPENDS message_runtime
+  DEPENDS OpenCV
 )
 
 ###########
@@ -119,8 +119,7 @@ add_library(tuw_uvc_ros
   src/tuw_uvc/uvc_ros.cpp
 )
 
-target_link_libraries(tuw_uvc_ros m v4l2 tuw_uvc tuw_uvc_ros
-  ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${OpenCV_LIBRARIES}
+target_link_libraries(tuw_uvc_ros m v4l2 tuw_uvc   ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${OpenCV_LIBRARIES}
 )
 
 ## Declare a cpp executable
