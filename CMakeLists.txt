@@ -4,15 +4,14 @@ project(tuw_uvc)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy dynamic_reconfigure image_transport camera_info_manager message_generation)
+find_package(catkin REQUIRED COMPONENTS cv_bridge roscpp rospy dynamic_reconfigure image_transport camera_info_manager message_generation)
 
 ## System dependencies are found with CMake's conventions
 find_package(Boost REQUIRED COMPONENTS thread signals program_options)
 
 
 
-find_package( OpenCV REQUIRED )
-link_libraries(${OpenCV_LIBS})
+find_package(OpenCV REQUIRED)
 
 add_definitions(-DUSE_SDL -DLINUX -D_GNU_SOURCE=1 -D_REENTRANT )
 
@@ -91,9 +90,9 @@ generate_dynamic_reconfigure_options(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
+  DEPENDS OpenCV
   LIBRARIES tuw_uvc tuw_uvc_ros
   CATKIN_DEPENDS message_runtime
-#  DEPENDS system_lib
 )
 
 ###########
@@ -121,9 +120,7 @@ add_library(tuw_uvc_ros
 )
 
 target_link_libraries(tuw_uvc_ros m v4l2 tuw_uvc tuw_uvc_ros
-  ${catkin_LIBRARIES}
-  ${Boost_LIBRARIES} 
-  ${OpenCV_LIBS}
+  ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${OpenCV_LIBRARIES}
 )
 
 ## Declare a cpp executable
@@ -141,24 +138,22 @@ add_dependencies(tuw_uvc_ros ${PROJECT_NAME}_gencpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(general_node tuw_uvc_ros
-  ${catkin_LIBRARIES})
+  ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES})
 add_dependencies(general_node tuw_uvc_ros) 
   
 target_link_libraries(logitech_node tuw_uvc_ros
-  ${catkin_LIBRARIES})
+  ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES})
 add_dependencies(logitech_node tuw_uvc_ros) 
   
 target_link_libraries(logitech_sphere_node tuw_uvc_ros
-  ${catkin_LIBRARIES})
+  ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES})
 add_dependencies(logitech_sphere_node tuw_uvc_ros) 
   
 target_link_libraries(wide_angle_node tuw_uvc_ros
-  ${catkin_LIBRARIES})
+  ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES})
 add_dependencies(wide_angle_node tuw_uvc_ros) 
   
   
 target_link_libraries(update_dynamic_reconfigure m v4l2 tuw_uvc 
-  ${catkin_LIBRARIES}
-  ${Boost_LIBRARIES} 
-  ${OpenCV_LIBS})
+  ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${OpenCV_LIBRARIES})
   
