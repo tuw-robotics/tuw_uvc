@@ -76,6 +76,7 @@ generate_dynamic_reconfigure_options(
   cfg/CameraGeneral.cfg
   cfg/CameraLogitech.cfg
   cfg/CameraLogitechSphere.cfg
+  cfg/CameraLogitechC920.cfg
   cfg/CameraWideAngle.cfg
 )
 
@@ -126,6 +127,7 @@ target_link_libraries(tuw_uvc_ros m v4l2 tuw_uvc   ${catkin_LIBRARIES} ${Boost_L
 add_executable(general_node src/general_node.cpp)
 add_executable(logitech_node src/logitech_node.cpp)
 add_executable(logitech_sphere_node src/logitech_sphere_node.cpp)
+add_executable(logitech_c920_node src/logitech_c920_node.cpp)
 add_executable(wide_angle_node src/wide_angle_node.cpp)
 
 add_executable(update_dynamic_reconfigure src/tuw_uvc/uvc.cpp src/update_dynamic_reconfigure.cpp)
@@ -151,6 +153,10 @@ add_dependencies(logitech_sphere_node tuw_uvc_ros)
 target_link_libraries(wide_angle_node tuw_uvc_ros
   ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES})
 add_dependencies(wide_angle_node tuw_uvc_ros) 
+
+target_link_libraries(logitech_c920_node tuw_uvc_ros
+  ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES})
+add_dependencies(logitech_c920_node tuw_uvc_ros) 
   
   
 target_link_libraries(update_dynamic_reconfigure m v4l2 tuw_uvc 
