@@ -6,6 +6,7 @@
   <node pkg="tuw_uvc" type="general_node" name="camera"  output="screen">
     <param name="video_device" value="/dev/video$(arg device)"/>
     <param name="show_camera_image" value="$(arg show)"/>  
+    <param name="camera_freeze" value="false"/>
     <param name="convert_image" value="1"/>    
     <param name="width" value="1280"/>     
     <param name="height" value="720"/>    
