@@ -259,6 +259,7 @@ void V4RCamNode::showCameraImage()
     cv::Mat img;
     int key = -1;
     showCameraImageThreadActive_ = true;
+    img.create(height_, width_, CV_8UC3);
     do {
         if((lastShownFrame.tv_sec != timeLastFrame_.tv_sec) || (lastShownFrame.tv_usec != timeLastFrame_.tv_usec)) {
             img.create(height_, width_, CV_8UC3);

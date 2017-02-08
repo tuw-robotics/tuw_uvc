@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012 by Markus Bader                                    *
+ *   Copyright (C) 2017 by Markus Bader                                    *
  *   markus.bader@tuwien.ac.at                                             *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
