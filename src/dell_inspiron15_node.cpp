@@ -21,7 +21,7 @@
 
 #include <tuw_uvc/uvc_ros.h>
 #include <dynamic_reconfigure/server.h>
-#include <tuw_uvc/CameraLogitechSphereConfig.h>
+#include <tuw_uvc/DellInspiron15Config.h>
 
 class CameraNode : public V4RCamNode {
 public:
@@ -29,14 +29,14 @@ public:
         reconfigureFnc_ = boost::bind(&CameraNode::callbackParameters, this,  _1, _2);
         reconfigureServer_.setCallback(reconfigureFnc_);
     }
-    void callbackParameters ( tuw_uvc::CameraLogitechSphereConfig &config, uint32_t level ) {  
+    void callbackParameters ( tuw_uvc::DellInspiron15Config &config, uint32_t level ) {  
         show_camera_image_ = config.show_camera_image; 
         camera_freeze_ = config.camera_freeze;
 	queueRosParamToV4LCommit_ = true;
     }
 protected:
-    dynamic_reconfigure::Server<tuw_uvc::CameraLogitechSphereConfig> reconfigureServer_;
-    dynamic_reconfigure::Server<tuw_uvc::CameraLogitechSphereConfig>::CallbackType reconfigureFnc_;
+    dynamic_reconfigure::Server<tuw_uvc::DellInspiron15Config> reconfigureServer_;
+    dynamic_reconfigure::Server<tuw_uvc::DellInspiron15Config>::CallbackType reconfigureFnc_;
 protected:
 };
 
@@ -44,7 +44,7 @@ protected:
 int main(int argc, char **argv)
 {
 
-    ros::init(argc, argv, "logitech_sphere");
+    ros::init(argc, argv, "tuw_uvc_general");
     ros::NodeHandle n;
     CameraNode node(n);
     ros::Rate rate(100);

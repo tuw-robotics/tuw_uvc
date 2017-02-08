@@ -23,10 +23,10 @@
 #include <dynamic_reconfigure/server.h>
 #include <tuw_uvc/CameraLogitechC920Config.h>
 
-class V4RLogitechC920Node : public V4RCamNode {
+class CameraNode : public V4RCamNode {
 public:
-    V4RLogitechC920Node ( ros::NodeHandle &n ):V4RCamNode(n) {
-        reconfigureFnc_ = boost::bind(&V4RLogitechC920Node::callbackParameters, this,  _1, _2);
+    CameraNode ( ros::NodeHandle &n ):V4RCamNode(n) {
+        reconfigureFnc_ = boost::bind(&CameraNode::callbackParameters, this,  _1, _2);
         reconfigureServer_.setCallback(reconfigureFnc_);
     }
     void callbackParameters ( tuw_uvc::CameraLogitechC920Config &config, uint32_t level ) {  
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 
     ros::init(argc, argv, "logitech_sphere");
     ros::NodeHandle n;
-    V4RLogitechC920Node node(n);
+    CameraNode node(n);
     ros::Rate rate(100);
     while(ros::ok() && node.grab()) {
         node.publishCamera();
