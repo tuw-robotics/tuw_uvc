@@ -274,7 +274,7 @@ void V4RCamNode::showCameraImage()
 	    }
             cv::imshow(window_name, img);
         }
-        key =  cv::waitKey(50);
+        key =  (char) cv::waitKey(50);
     } while((key == -1) && show_camera_image_ && showCameraImageThreadActive_);
     
     cv::putText(img, "OFFLINE", cv::Point(img.cols/4, img.rows/4), cv::FONT_HERSHEY_PLAIN, 5, cv::Scalar::all(0), 3, CV_AA);
