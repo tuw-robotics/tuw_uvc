@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 
-
+#include <iostream>
 #include <tuw_uvc/uvc.h>
 #include <boost/algorithm/string.hpp>
 #include <boost/program_options.hpp>

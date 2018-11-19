@@ -26,6 +26,7 @@
 #include <boost/interprocess/sync/scoped_lock.hpp>
 #include "luvcview/v4l2uvc.h"
 #include <cv_bridge/cv_bridge.h>
+#include <boost/format.hpp>
 
 typedef boost::interprocess::scoped_lock<boost::interprocess::interprocess_mutex> Lock;
 
